@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+#apiKey {
+    border: solid black 1px;
+    border-radius: 30px;
+    padding-left: 10px;
+    height: 25px;
+    width: 138px;
+}
+
+#apiKey:focus {
+    outline: none;
+    box-shadow: grey;
+}
+body {
+    margin: 0;
+}
+
+nav {
+    overflow: auto;
+    text-align: center;
+    color: white;
+    height: 400px;
+    background: url("http://thewallpaper.co/wp-content/uploads/2016/03/nasa-wide-high-definition-wallpaper-for-desktop-background-download-nasa-photos-free-hd-cool-monitor-1920x1200-768x480.jpg") no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+#changeBackground {
+    color: grey;
+    font-size: smaller;
+    text-decoration: underline;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+}
+
+.btn {
+    border: none;
+    color: black;
+    background-color: white;
+    height: 50px;
+    width: 100px;
+    border-radius: 3px;
+    margin: 20px;
+    box-shadow: 1px 1px 5px #989898;
+}
+
+#pod {
+    background: rgba(106, 106, 106, 0.7);
+}
+
+.btn:focus {
+    /*outline: dotted grey;*/
+}
+/*#goRocket {*/
+    /*margin: 20px auto;*/
+    /*height: 50px;*/
+/*}*/
