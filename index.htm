@@ -9,10 +9,11 @@
 </head>
 <body>
 <nav>
-    <p id="changeBackground" onclick="setBackground()">Set Picture of The Day as Background</p>
+    <p class="changeBackground" id="changeBackground1" onclick="setBackground()">Set Picture of The Day as Background</p>
     <h2>Nasa API Project</h2>
     <input id="apiKey" placeholder="API Key">
     <br>
+    <p id="changeBackground2" class="changeBackground">Reset Background to Default</p>
 </nav>
 <!--<img src="rocketIcon.ico" onclick="getAPI(baseUrls.APOD)" id="goRocket">-->
 <main>
@@ -21,9 +22,10 @@
         <button class="btn">Near Earth Objects</button>
     </div>
     <div id="pod">
-        <img src="">
+        <img id="podImg" src="">
+        <h4 id="podTitle"></h4>
         <p>Image Credits: <span id="imgCredits"></span></p>
-        <p></p>
+        <p id="podDescription"></p>
     </div>
 </main>
 </body>

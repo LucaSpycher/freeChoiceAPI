@@ -28,12 +28,25 @@ nav {
     position: relative;
 }
 
-#changeBackground {
+.changeBackground {
     color: grey;
     font-size: smaller;
     text-decoration: underline;
+}
+
+.changeBackground:hover {
+    cursor: pointer;
+}
+
+#changeBackground1 {
     position: absolute;
     top: -2px;
+    right: 5px;
+}
+
+#changeBackground2 {
+    position: absolute;
+    bottom: 1px;
     right: 5px;
 }
 
@@ -49,7 +62,17 @@ nav {
 }
 
 #pod {
-    background: rgba(106, 106, 106, 0.7);
+    background: rgba(122, 122, 122, 0.7);
+    overflow: auto;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+#podImg {
+    height: 300px;
+    border: black solid 1px;
+    float: right;
+    margin-left: 5px;
 }
 
 .btn:focus {
