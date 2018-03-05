@@ -19,10 +19,16 @@ $(document).ready(function () {
     $('#podBtn').on('click', function () {
         getAPI(baseUrls.APOD, 'APOD');
         if(returnedObjName === 'APOD') {
-            $('#podImg').attr('src', returnedObj.url);
+            if (returnedObj.media_type == 'video') {
+                $('#podImg').hide();
+                $('#podVid').attr('src', returnedObj.url);
+            } else {
+                $('#podVid').hide();
+                $('#podImg').attr('src', returnedObj.url);
+            }
             $('#podDescription').text(returnedObj.explanation);
             $('#podTitle').text(returnedObj.title);
-            $('#imgCredits').text(returnedObj.copyright);
+            if (returnedObj)
             $('#pod').slideToggle();
         }
     });

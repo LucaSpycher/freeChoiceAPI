@@ -68,11 +68,18 @@ nav {
     margin-bottom: 20px;
 }
 
-#podImg {
+#podImg, #podVid {
     height: 300px;
     border: black solid 1px;
     float: right;
     margin-left: 5px;
+}
+
+#podVid {
+    width: 500px;
+    resize: both;
+    background-color: black;
+    overflow: auto;
 }
 
 .btn:focus {
