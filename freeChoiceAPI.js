@@ -1,8 +1,8 @@
-var returnedObj = {};
-var returnedObjName = '';
+var apodPrevCalled = false;
 
 $(document).ready(function () {
     $('#pod').hide();
+    $('#promptUser').hide();
 
     var input = $('nav').find('input');
     input.on('focus', function () {
@@ -16,22 +16,16 @@ $(document).ready(function () {
         $('nav').css({'background-image': "url('http://thewallpaper.co/wp-content/uploads/2016/03/nasa-wide-high-definition-wallpaper-for-desktop-background-download-nasa-photos-free-hd-cool-monitor-1920x1200-768x480.jpg')"})
     });
 
-    $('#podBtn').on('click', function () {
-        getAPI(baseUrls.APOD, 'APOD');
-        if(returnedObjName === 'APOD') {
-            if (returnedObj.media_type == 'video') {
-                $('#podImg').hide();
-                $('#podVid').attr('src', returnedObj.url);
-            } else {
-                $('#podVid').hide();
-                $('#podImg').attr('src', returnedObj.url);
-            }
-            $('#podDescription').text(returnedObj.explanation);
-            $('#podTitle').text(returnedObj.title);
-            if (returnedObj)
-            $('#pod').slideToggle();
-        }
+    $('#podBtn').on('click', function () {doPod(baseUrls.APOD);});
+
+    $('#neoBtn').on('click', function () {
+        $('#promptUser').fadeIn();
     });
+    $('#close').on('click', function() {
+        $('#promptUser').fadeOut()
+    });
+
+
 });
 
 var baseUrls = {
@@ -44,14 +38,57 @@ var baseUrls = {
     'marsRoverImg': ''
 };
 
-function getAPI(url, name) {
+// function getAPI(url, name) {
+//     var key = $('#apiKey').val();
+//     $.ajax({
+//         url: url + 'api_key=' + key,
+//         success: function (result) {
+//             console.log('result: ' + result);
+//             returnedObj = result;
+//             returnedObjName = name;
+//         },
+//         error: function () {
+//             alert('Failed!');
+//         }
+//     });
+// }
+
+function setBackground(url) {
     var key = $('#apiKey').val();
     $.ajax({
         url: url + 'api_key=' + key,
         success: function (result) {
-            console.log('result: ' + result);
-            returnedObj = result;
-            returnedObjName = name;
+            if(result.media_type === 'image') $('nav').css({'background-image': "url('" + result.url + "')"});
+            else alert("Can't non-image media-type as background. Sorry :(");
+        },
+        error: function () {
+            alert('Failed!');
+        }
+    });
+
+}
+
+function doPod(url) {
+    var key = $('#apiKey').val();
+    $.ajax({
+        url: url + 'api_key=' + key,
+        success: function (result) {
+            if (!apodPrevCalled) {
+                if (result.media_type == 'video') {
+                    $('#podImg').hide();
+                    $('#podVid').attr('src', result.url);
+                    $('#podVidUrl').attr('href', result.url);
+                } else {
+                    $('#podVid').hide();
+                    $('#podImg').attr('src', result.url);
+                    $('#podImgUrl').attr('href', result.url);
+                }
+                $('#podDescription').text(result.explanation);
+                $('#podTitle').text(result.title);
+                $('#imgCredits').text(result.copyright);
+                apodPrevCalled = true;
+            }
+            $('#pod').slideToggle();
         },
         error: function () {
             alert('Failed!');
@@ -59,9 +96,15 @@ function getAPI(url, name) {
     });
 }
 
-function setBackground() {
-    getAPI(baseUrls.APOD, 'APOD');
-    if(returnedObjName === 'APOD') {
-        $('nav').css({'background-image': "url('" + returnedObj.url + "')"})
-    }
+function doNeo(url) {
+    var key = $('#apiKey').val();
+    $.ajax({
+        url: url + 'api_key=' + key,
+        success: function (result) {
+
+        },
+        error: function () {
+            alert('Failed!');
+        }
+    });
 }

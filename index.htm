@@ -9,25 +9,34 @@
 </head>
 <body>
 <nav>
-    <p class="changeBackground" id="changeBackground1" onclick="setBackground()">Set Picture of The Day as Background</p>
+    <p class="changeBackground" id="changeBackground1" onclick="setBackground(baseUrls.APOD)">Set Picture of The Day as Background</p>
     <h2>Nasa API Project</h2>
     <input id="apiKey" placeholder="API Key">
     <br>
     <p id="changeBackground2" class="changeBackground">Reset Background to Default</p>
 </nav>
-<!--<img src="rocketIcon.ico" onclick="getAPI(baseUrls.APOD)" id="goRocket">-->
+
 <main>
     <div>
         <button id="podBtn" class="btn">Picture of the Day</button>
-        <button class="btn">Near Earth Objects</button>
+        <button class="btn" id="neoBtn">Near Earth Objects</button>
     </div>
     <div id="pod">
-        <img id="podImg" src="">
-        <iframe id="podVid"></iframe>
+        <a id="podImgUrl" target="_blank"><img id="podImg" src=""></a>
+        <a id="podVidUrl" target="_blank"><iframe id="podVid"></iframe></a>
         <h4 id="podTitle"></h4>
         <p>Image Credits: <span id="imgCredits"></span></p>
         <p id="podDescription"></p>
     </div>
 </main>
+<div id="promptUser">
+    <span id="close">X</span>
+    <div id="promptUserInputs">
+        <input id="startDate" type="text" placeholder="YYYY-MM-DD">
+        <input id="endDate" type="text" placeholder="YYYY-MM-DD">
+        <img src="" id="goRocket">
+    </div>
+</div>
+
 </body>
 </html>
