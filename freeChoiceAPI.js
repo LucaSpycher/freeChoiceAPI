@@ -3,6 +3,7 @@ var apodPrevCalled = false;
 $(document).ready(function () {
     $('#pod').hide();
     $('#promptUser').hide();
+    $('#neo').hide();
 
     var input = $('nav').find('input');
     input.on('focus', function () {
@@ -24,7 +25,6 @@ $(document).ready(function () {
     $('#close').on('click', function() {
         $('#promptUser').fadeOut()
     });
-
 
 });
 
@@ -62,7 +62,7 @@ function setBackground(url) {
             else alert("Can't non-image media-type as background. Sorry :(");
         },
         error: function () {
-            alert('Failed!');
+            alert('Make sure to enter a working API key!');
         }
     });
 
@@ -81,7 +81,7 @@ function doPod(url) {
                 } else {
                     $('#podVid').hide();
                     $('#podImg').attr('src', result.url);
-                    $('#podImgUrl').attr('href', result.url);
+                    $('#podImgUrl').attr('href', result.hdurl);
                 }
                 $('#podDescription').text(result.explanation);
                 $('#podTitle').text(result.title);
@@ -91,20 +91,33 @@ function doPod(url) {
             $('#pod').slideToggle();
         },
         error: function () {
-            alert('Failed!');
+            alert('Make sure to enter a working API key!');
         }
     });
 }
 
-function doNeo(url) {
-    var key = $('#apiKey').val();
-    $.ajax({
-        url: url + 'api_key=' + key,
-        success: function (result) {
+function searchNeo() {
+    var starDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+    if(starDate.length == 10 && endDate.length == 10) {
+        var url = baseUrls.NeoWs + 'start_date=' + starDate + '&' + 'end_date=' + endDate + '&';
+        var key = $('#apiKey').val();
+        $.ajax({
+            url: url + 'api_key=' + key,
+            success: function (result) {
+                console.log(result);
+                $('#promptUser').fadeOut();
+                displayNeo(result);
+            },
+            error: function () {
+                alert('Make sure you entered valid dates and a valid API key. The end date should be within 7 days of the start date');
+            }
+        });
+    } else {
+        alert('Invalid Date')
+    }
+}
 
-        },
-        error: function () {
-            alert('Failed!');
-        }
-    });
+function displayNeo(obj) {
+
 }

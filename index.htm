@@ -19,7 +19,8 @@
 <main>
     <div>
         <button id="podBtn" class="btn">Picture of the Day</button>
-        <button class="btn" id="neoBtn">Near Earth Objects</button>
+        <button class="btn" id="neoBtn">Search for Near Earth Objects</button>
+        <!--<button class="btn" id="displayNeo">Display Near Earth Objects</button>-->
     </div>
     <div id="pod">
         <a id="podImgUrl" target="_blank"><img id="podImg" src=""></a>
@@ -28,13 +29,21 @@
         <p>Image Credits: <span id="imgCredits"></span></p>
         <p id="podDescription"></p>
     </div>
+    <div id="neo">
+        <h4>Near Earth Objects</h4>
+    </div>
 </main>
 <div id="promptUser">
     <span id="close">X</span>
     <div id="promptUserInputs">
+        <h4>Search for asteroids on their closest approach date to Earth</h4>
+        <label for="startDate">Start Date: </label>
         <input id="startDate" type="text" placeholder="YYYY-MM-DD">
+        <br><br>
+        <label for="endDate">End Date: </label>
         <input id="endDate" type="text" placeholder="YYYY-MM-DD">
-        <img src="" id="goRocket">
+        <br>
+        <img src="https://www.iconsdb.com/icons/preview/barbie-pink/rocket-xxl.png" id="goRocket" onclick="searchNeo()">
     </div>
 </div>
 
