@@ -85,7 +85,12 @@ function doPod(url) {
                 }
                 $('#podDescription').text(result.explanation);
                 $('#podTitle').text(result.title);
-                $('#imgCredits').text(result.copyright);
+                if (!result.hasOwnProperty('copyright')) {
+                    $('#imgCredits').text('Public Domain');
+                }
+                else {
+                    $('#imgCredits').text(result.copyright);
+                }
                 apodPrevCalled = true;
             }
             $('#pod').slideToggle();
@@ -119,5 +124,15 @@ function searchNeo() {
 }
 
 function displayNeo(obj) {
-
+    $('#pod').slideUp();
+    var html = '';
+    for(var i in obj.near_earth_objects) {
+        console.log(i);
+        html += '<div class="neoDay"><span class="date"> date: '+ i +'</span>';
+        for(var l = 0; l < obj.near_earth_objects.length; l++) {
+            console.log(obj.near_earth_objects[l]);
+        }
+        html += '</div>'
+    }
+    $('#neo').html(html);
 }
