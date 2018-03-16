@@ -26,6 +26,8 @@ $(document).ready(function () {
         $('#promptUser').fadeOut()
     });
 
+
+
 });
 
 var baseUrls = {
@@ -125,14 +127,36 @@ function searchNeo() {
 
 function displayNeo(obj) {
     $('#pod').slideUp();
-    var html = '';
+    var html = '<h4>&nbsp;&nbsp;&nbsp;Near Earth Objects (a list of asteroids based on their closest approach date to earth)</h4>' +
+        '<span id="hide">hide</span>';
     for(var i in obj.near_earth_objects) {
-        console.log(i);
-        html += '<div class="neoDay"><span class="date"> date: '+ i +'</span>';
-        for(var l = 0; l < obj.near_earth_objects.length; l++) {
-            console.log(obj.near_earth_objects[l]);
+        var currentDay = obj.near_earth_objects[i];
+        console.log(currentDay);
+        html += '<div class="neoDay"><h4 class="date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; date: '+ i +'</h4>';
+        for(var l = 0; l < obj.near_earth_objects[i].length; l++) {
+            var currentNeo = currentDay[l];
+            html += '<div><p class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ currentNeo.name +'</p>';
+            html += '<div class="neoDescription" style="display: none"> This asteroid is will be '+ currentNeo.close_approach_data[0].miss_distance.kilometers +'km away from' +
+                ' the earth on this date</div>';
+
+            html += '</div>';
         }
         html += '</div>'
     }
-    $('#neo').html(html);
+    $('#neo').html(html).slideDown();
+
+    $('#hide').on('click', function () {
+        $('#neo').slideUp();
+    });
+    $('.name').on({
+        click: function () {
+            $(this).parent().toggleClass('whiteBackground').find('div').slideToggle();
+        },
+        mouseenter: function () {
+            $(this).animate({backgroundColor: 'white'}, 100)
+        },
+        mouseleave: function () {
+            $(this).animate({backgroundColor: 'inherit'}, 100)
+        }
+    });
 }
