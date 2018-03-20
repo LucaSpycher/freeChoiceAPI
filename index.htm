@@ -20,6 +20,7 @@
     <div>
         <button id="podBtn" class="btn">Picture of the Day</button>
         <button class="btn" id="neoBtn">Search for Near Earth Objects</button>
+        <button class="btn" id="epicBtn">Search for Earth Images</button>
         <!--<button class="btn" id="displayNeo">Display Near Earth Objects</button>-->
     </div>
     <div id="pod">
@@ -30,9 +31,10 @@
         <p id="podDescription"></p>
     </div>
     <div id="neo"></div>
+    <div id="epic"></div>
 </main>
 <div id="promptUser">
-    <span id="close">X</span>
+    <span class="close">X</span>
     <div id="promptUserInputs">
         <h3>Search for asteroids on their closest approach date to Earth</h3>
         <label for="startDate">Start Date: </label>
@@ -41,7 +43,17 @@
         <label for="endDate">End Date: </label>
         <input id="endDate" type="text" placeholder="YYYY-MM-DD">
         <br>
-        <img src="pink_rocket_icon.png" id="goRocket" onclick="searchNeo()">
+        <img src="pink_rocket_icon.png" class="goRocket" onclick="searchNeo()">
+    </div>
+</div>
+<div id="containerEpic">
+    <span class="close">X</span>
+    <div id="searchEpic">
+        <h3>Search For Images of the Earth By Date</h3>
+        <label for="dateEpic">Start Date: </label>
+        <input id="dateEpic" type="text" placeholder="YYYY-MM-DD">
+        <br><br>
+        <img src="pink_rocket_icon.png" class="goRocket" onclick="searchEpic()">
     </div>
 </div>
 

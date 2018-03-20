@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#pod').hide();
     $('#promptUser').hide();
     $('#neo').hide();
+    $('#containerEpic').hide();
 
     var input = $('nav').find('input');
     input.on('focus', function () {
@@ -14,7 +15,7 @@ $(document).ready(function () {
     });
 
     $('#changeBackground2').on('click', function () {
-        $('nav').css({'background-image': "url('http://thewallpaper.co/wp-content/uploads/2016/03/nasa-wide-high-definition-wallpaper-for-desktop-background-download-nasa-photos-free-hd-cool-monitor-1920x1200-768x480.jpg')"})
+        $('nav').css({'background-image': "url(original_background.jpg)"})
     });
 
     $('#podBtn').on('click', function () {doPod(baseUrls.APOD);});
@@ -22,11 +23,13 @@ $(document).ready(function () {
     $('#neoBtn').on('click', function () {
         $('#promptUser').fadeIn();
     });
-    $('#close').on('click', function() {
-        $('#promptUser').fadeOut()
+    $('.close').on('click', function() {
+        $(this).parent().fadeOut()
     });
 
-
+    $('#epicBtn').on('click', function () {
+        $('#containerEpic').fadeIn();
+    })
 
 });
 
@@ -126,22 +129,23 @@ function searchNeo() {
 }
 
 function displayNeo(obj) {
-    $('#pod').slideUp();
-    var html = '<h4>&nbsp;&nbsp;&nbsp;Near Earth Objects (a list of asteroids based on their closest approach date to earth)</h4>' +
+    var html = '<h3>Near Earth Objects (a list of asteroids based on their closest approach date to earth)</h3>' +
         '<span id="hide">hide</span>';
     for(var i in obj.near_earth_objects) {
         var currentDay = obj.near_earth_objects[i];
         console.log(currentDay);
-        html += '<div class="neoDay"><h4 class="date">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; date: '+ i +'</h4>';
+        html += '<table class="neoDay"><th class="date" colspan="100%">DATE: '+ i +'</th>';
+        html += '<tr><td>Name</td><td>Distance from Earth (km)</td><td>Estimated Diameter Min (m)</td><td>Estimated Diameter Max (m)</td><td>Is Potentially Hazardous</td></tr>';
         for(var l = 0; l < obj.near_earth_objects[i].length; l++) {
             var currentNeo = currentDay[l];
-            html += '<div><p class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ currentNeo.name +'</p>';
-            html += '<div class="neoDescription" style="display: none"> This asteroid is will be '+ currentNeo.close_approach_data[0].miss_distance.kilometers +'km away from' +
-                ' the earth on this date</div>';
-
-            html += '</div>';
+            html += '<tr  class="name"><td>'+ currentNeo.name +'</td>';
+            html += '<td class="neoDescription">' + currentNeo.close_approach_data[0].miss_distance.kilometers + '</td>';
+            html += '<td>' + currentNeo.estimated_diameter.meters.estimated_diameter_min + '</td>';
+            html += '<td>' + currentNeo.estimated_diameter.meters.estimated_diameter_max + '</td>';
+            html += '<td>' + currentNeo.is_potentially_hazardous_asteroid.toString() + '</td>';
+            html += '</tr>';
         }
-        html += '</div>'
+        html += '</table>'
     }
     $('#neo').html(html).slideDown();
 
@@ -150,13 +154,12 @@ function displayNeo(obj) {
     });
     $('.name').on({
         click: function () {
-            $(this).parent().toggleClass('whiteBackground').find('div').slideToggle();
-        },
-        mouseenter: function () {
-            $(this).animate({backgroundColor: 'white'}, 100)
-        },
-        mouseleave: function () {
-            $(this).animate({backgroundColor: 'inherit'}, 100)
+            $(this).toggleClass('whiteBackground');
         }
     });
+}
+
+function searchEpic() {
+    var date = $('#dateEpic').val();
+
 }
