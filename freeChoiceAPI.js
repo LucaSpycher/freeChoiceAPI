@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('#promptUser').hide();
     $('#neo').hide();
     $('#containerEpic').hide();
+    $('#containerEarth').hide();
 
     var input = $('nav').find('input');
     input.on('focus', function () {
@@ -29,8 +30,10 @@ $(document).ready(function () {
 
     $('#epicBtn').on('click', function () {
         $('#containerEpic').fadeIn();
+    });
+    $('#earthBtn').on('click', function () {
+        $('#containerEarth').fadeIn();
     })
-
 });
 
 var baseUrls = {
@@ -38,7 +41,7 @@ var baseUrls = {
     NeoWs: 'https://api.nasa.gov/neo/rest/v1/feed?',
     EPIC: 'https://api.nasa.gov/EPIC/api/natural/date/',
     'EONET': '',
-    'Earth': '',
+    Earth: 'https://api.nasa.gov/planetary/earth/imagery/',
     'ImgVidLbrary': '',
     'marsRoverImg': ''
 };
@@ -128,7 +131,7 @@ function searchNeo() {
 
 function displayNeo(obj) {
     var html = '<h3>Near Earth Objects (a list of asteroids based on their closest approach date to earth)</h3>' +
-        '<span id="hide">hide</span>';
+        '<span class="hide">hide</span>';
     for(var i in obj.near_earth_objects) {
         var currentDay = obj.near_earth_objects[i];
         console.log(currentDay);
@@ -147,13 +150,11 @@ function displayNeo(obj) {
     }
     $('#neo').html(html).slideDown();
 
-    $('#hide').on('click', function () {
-        $('#neo').slideUp();
+    $('.hide').on('click', function () {
+        $(this).parent().slideUp();
     });
-    $('.name').on({
-        click: function () {
+    $('.name').on('click', function () {
             $(this).toggleClass('whiteBackground');
-        }
     });
 }
 
@@ -177,10 +178,10 @@ function searchEpic() {
 }
 
 function displayEpic(arr, date) {
+    $('#containerEpic').fadeOut();
     if(arr.length === 0) {
         $('#epic').html('no results.').slideDown();
     } else {
-        $('#containerEpic').fadeOut();
         var imgUrls = [];
         var dateArr = date.split('-');
         var finalDate = dateArr[0] + '/' + dateArr[1] + '/' + dateArr[2] + '/';
@@ -188,11 +189,38 @@ function displayEpic(arr, date) {
             imgUrls[i] = 'https://epic.gsfc.nasa.gov/archive/natural/' + finalDate + 'jpg/' + arr[i].image + '.jpg';
         }
         var html = "<h4>These images were taken by NASA's EPIC camera onboard the NOAA DSCOVR spacecraft</h4>";
-        html += '<div id="epicImgContainer">';
+        html += '<span class="hide">hide</span><div id="epicImgContainer">';
         for (var l = 0; l < imgUrls.length; l++) {
-            html += '<img src="' + imgUrls[l] + '" class="epicImg">'
+            html += '<a href="' + imgUrls[l] + '" target="_blank"><img src="' + imgUrls[l] + '" class="epicImg"></a>'
         }
         html += '</div>';
         $('#epic').html(html).slideDown();
     }
+    $('.hide').on('click', function () {
+        $(this).parent().slideUp();
+    });
+}
+
+function searchEarth() {
+    if($('#dateEarth').val().length === 10) {
+        var date = '&date=' + $('#dateEarth').val();
+    } else {
+        var date = "";
+    }
+    var url = baseUrls.Earth + '?lon=' +  $('#lonEarth').val() + '&' + 'lat=' + $('#latEarth').val() + date + '&cloud_score=True&api_key=' + $('#apiKey').val();
+    console.log(url);
+    $.ajax({
+        url: url,
+        success: function (result) {
+            console.log(result);
+            displayEarth(result);
+        },
+        error: function () {
+            alert('Make sure to enter a valid longitude and latitude and API key!');
+        }
+    });
+}
+
+function displayEarth() {
+    $('#containerEarth').fadeOut();
 }

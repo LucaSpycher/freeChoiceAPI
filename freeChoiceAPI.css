@@ -67,6 +67,7 @@ main {
     overflow: auto;
     padding-left: 10px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 #podImg, #podVid {
@@ -95,7 +96,7 @@ main {
     cursor: pointer;
 }
 
-#promptUser, #containerEpic {
+#promptUser, #containerEpic, #containerEarth {
     position: fixed;
     top: 0;
     left: 0;
@@ -117,7 +118,7 @@ main {
     cursor: pointer;
 }
 
-#promptUserInputs, #searchEpic {
+#promptUserInputs, #searchEpic, #searchEarth {
     padding: 5px;
     height: 300px;
     width: 300px;
@@ -131,12 +132,11 @@ main {
 }
 
 #neo {
-    position: relative;
     padding: 0;
     text-align: center;
 }
 
-#hide {
+.hide {
     text-decoration: underline;
     position: absolute;
     top: 2px;
@@ -144,7 +144,7 @@ main {
     color: #d3d3d3;
 }
 
-#hide:hover {
+.hide:hover {
     cursor: pointer;
 }
 
@@ -187,4 +187,15 @@ table, td, th {
     width: 200px;
     display: inline;
     padding-right: 5px;
+}
+
+#searchEarth {
+    height: 483px;
+    width: 500px;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+}
+
+#earthMapImg {
+    margin-top: 30px;
 }

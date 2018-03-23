@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="freeChoiceAPI.css">
 </head>
 <body>
+
 <nav>
     <p class="changeBackground" id="changeBackground1" onclick="setBackground(baseUrls.APOD)">Set Picture of The Day as Background</p>
     <h2>Nasa API Project</h2>
@@ -21,7 +22,7 @@
         <button id="podBtn" class="btn">Picture of the Day</button>
         <button class="btn" id="neoBtn">Search for Near Earth Objects</button>
         <button class="btn" id="epicBtn">Search for Earth Images</button>
-        <!--<button class="btn" id="displayNeo">Display Near Earth Objects</button>-->
+        <button class="btn" id="earthBtn">Search for Landsat Images</button>
     </div>
     <div id="pod">
         <a id="podImgUrl" target="_blank"><img id="podImg" src=""></a>
@@ -33,6 +34,7 @@
     <div id="neo"></div>
     <div id="epic"></div>
 </main>
+
 <div id="promptUser">
     <span class="close">X</span>
     <div id="promptUserInputs">
@@ -54,6 +56,30 @@
         <input id="dateEpic" type="text" placeholder="YYYY-MM-DD">
         <br><br>
         <img src="pink_rocket_icon.png" class="goRocket" onclick="searchEpic()">
+    </div>
+</div>
+<div id="containerEarth">
+    <span class="close">X</span>
+    <div id="searchEarth">
+        <h3>Search For Landsat 8 Images by Date and Location</h3>
+        <label for="dateEarth">Date (optional): </label>
+        <input id="dateEarth" placeholder="YYYY-MM-DD">
+        <img id="earthMapImg" src="http://www.prinsjesdagdenhaag.nl/wp-content/uploads/2018/02/some-doing-regular-initial-own-here-endure-additional-or-limited-beginning-strategy-world-map-flat-of-world-map-flat.jpg" width="450" usemap="#earthMap">
+        <map name="earthMap">
+            <area shape="rect">
+        </map>
+
+        <!--<br><br>-->
+        <!--<label for="lonEarth">Longitude: </label>-->
+        <!--<input type="number" id="lonEarth" placeholder="Float">-->
+        <!--<br><br>-->
+        <!--<label for="latEarth">Lattitude: </label>-->
+        <!--<input type="number" id="latEarth" placeholder="Float">-->
+
+
+
+        <br><br>
+        <img src="pink_rocket_icon.png" class="goRocket" onclick="searchEarth()">
     </div>
 </div>
 
