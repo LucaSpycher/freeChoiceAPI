@@ -33,6 +33,7 @@
     </div>
     <div id="neo"></div>
     <div id="epic"></div>
+    <div id="landsat"></div>
 </main>
 
 <div id="promptUser">
@@ -64,20 +65,27 @@
         <h3>Search For Landsat 8 Images by Date and Location</h3>
         <label for="dateEarth">Date (optional): </label>
         <input id="dateEarth" placeholder="YYYY-MM-DD">
-        <img id="earthMapImg" src="http://www.prinsjesdagdenhaag.nl/wp-content/uploads/2018/02/some-doing-regular-initial-own-here-endure-additional-or-limited-beginning-strategy-world-map-flat-of-world-map-flat.jpg" width="450" usemap="#earthMap">
-        <map name="earthMap">
-            <area shape="rect">
-        </map>
-
-        <!--<br><br>-->
-        <!--<label for="lonEarth">Longitude: </label>-->
-        <!--<input type="number" id="lonEarth" placeholder="Float">-->
-        <!--<br><br>-->
-        <!--<label for="latEarth">Lattitude: </label>-->
-        <!--<input type="number" id="latEarth" placeholder="Float">-->
-
-
-
+        <br><br>
+        Select a City:
+        <select id="selectCity">
+            <option value="0">plug in coordinates</option>
+            <option value="1">Berkeley</option>
+            <option value="2">San Francisco</option>
+            <option value="3">Paris</option>
+            <option value="4">Dubai</option>
+            <option value="5">Toronto</option>
+            <option value="6">Singapore</option>
+            <option value="7">Barcelona</option>
+            <option value="8">Cairo</option>
+            <option value="9">Brazil</option>
+            <option value="10">Geneva</option>
+        </select>
+        <br><br>
+        <label for="lonEarth">Longitude: </label>
+        <input type="number" id="lonEarth" placeholder="Float">
+        <br><br>
+        <label for="latEarth">Lattitude: </label>
+        <input type="number" id="latEarth" placeholder="Float">
         <br><br>
         <img src="pink_rocket_icon.png" class="goRocket" onclick="searchEarth()">
     </div>

@@ -33,6 +33,12 @@ $(document).ready(function () {
     });
     $('#earthBtn').on('click', function () {
         $('#containerEarth').fadeIn();
+    });
+    
+    $('#selectCity').on('change', function () {
+        var coords = [['',''], [-122.258423, 37.871853], [-122.431297, 37.773972], [2.349014, 48.864716], [55.296249, 25.276987], [-79.411079, 43.761539], [103.81983600000001, 1.352083], [2.154007, 41.390205], [31.340002,30.044281], [-46.625290, -23.533773], [6.143158, 46.204391]];
+        $('#lonEarth').val(coords[$('#selectCity').val()][0]);
+        $('#latEarth').val(coords[$('#selectCity').val()][1]);
     })
 });
 
@@ -221,6 +227,11 @@ function searchEarth() {
     });
 }
 
-function displayEarth() {
+function displayEarth(obj) {
     $('#containerEarth').fadeOut();
+    var html = '<span class="hide">hide</span><img id="landsatImg" src="'+ obj.url +'">';
+    $('#landsat').html(html).slideDown();
+    $('.hide').on('click', function () {
+        $(this).parent().slideUp();
+    });
 }
