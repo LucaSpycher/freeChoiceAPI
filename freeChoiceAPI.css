@@ -58,7 +58,7 @@ main {
     height: 50px;
     width: 100px;
     border-radius: 3px;
-    margin: 20px;
+    margin: 10px 20px;
     box-shadow: 1px 1px 5px #989898;
     overflow: hidden;
 }
@@ -207,4 +207,28 @@ table, td, th {
 
 #searchEarth {
     height: 350px;
+}
+
+#btnContainer {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fffffff5;
+    text-align: center;
+    margin: 13px 0;
+}
+
+#btnContainer>button {
+    box-sizing: border-box;
+}
+
+#arrowTop {
+    height: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    right:15px;
+}
+
+#arrowTop:hover {
+    cursor: pointer;
 }

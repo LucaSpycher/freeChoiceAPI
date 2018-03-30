@@ -6,6 +6,19 @@ $(document).ready(function () {
     $('#neo').hide();
     $('#containerEpic').hide();
     $('#containerEarth').hide();
+    $('#arrowTop').hide();
+    $('#dateEpic').val('2017-08-21');
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 520) {
+            $('#arrowTop').fadeIn();
+        } else {
+            $('#arrowTop').fadeOut();
+        }
+    });
+    $('#arrowTop').on('click', function () {
+        $('html, body').animate({scrollTop: 0}, 800);
+    });
 
     var input = $('nav').find('input');
     input.on('focus', function () {
